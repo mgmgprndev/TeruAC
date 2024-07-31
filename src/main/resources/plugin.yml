@@ -1,0 +1,5 @@
+name: Teru
+version: '${project.version}'
+main: com.mogukun.teru.Teru
+author: mogukun
+website: https://teru-ac.mogukun.com
