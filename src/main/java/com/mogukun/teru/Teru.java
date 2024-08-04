@@ -3,6 +3,7 @@ package com.mogukun.teru;
 import com.mogukun.teru.check.Check;
 import com.mogukun.teru.check.CheckUtil;
 import com.mogukun.teru.check.PlayerUtil;
+import com.mogukun.teru.commands.TeruCommand;
 import com.mogukun.teru.listeners.PlayerEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -13,6 +14,9 @@ public final class Teru extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        getCommand("teru").setExecutor(new TeruCommand());
+
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new PlayerEvent(), this);
         pm.registerEvents(new Check(), this);
@@ -27,5 +31,6 @@ public final class Teru extends JavaPlugin {
     public void onDisable() {
 
     }
+
 
 }

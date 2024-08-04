@@ -49,12 +49,13 @@ public class TimerA extends Check {
                 for (Long value : array) {
                     sum += value;
                 }
+
                 double average = (double) sum / array.size();
                 samples.put(uuid, array);
 
                 double avgDiff = Math.abs(50 - average);
 
-                if(avgDiff > 5 ){
+                if(avgDiff > 1.5 ){
                     if(violations.get(uuid) == null){
                         violations.put(uuid, new Counter());
                     }

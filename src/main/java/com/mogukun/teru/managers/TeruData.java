@@ -9,7 +9,10 @@ public class TeruData {
 
     public Player player;
     public Location to, from;
-    public double deltaX, deltaY, deltaZ;
-    public double lastDeltaX, lastDeltaY, lastDeltaZ;
+    public double deltaX, deltaY, deltaZ, deltaXZ;
+    public double lastDeltaX, lastDeltaY, lastDeltaZ, lastDeltaXZ;
+
+    public int airtick = 0;
+    public int serverAirTick = 0;
 
 }

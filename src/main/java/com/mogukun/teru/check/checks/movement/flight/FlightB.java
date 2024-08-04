@@ -9,13 +9,13 @@ import org.bukkit.event.EventHandler;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class FlightA extends Check {
+public class FlightB extends Check {
 
-    public FlightA() {
+    public FlightB() {
         cs = new CheckSetting();
         cs.setCheckName("Flight");
-        cs.setCheckType("A");
-        cs.setDescription("Simple Flight Check");
+        cs.setCheckType("B");
+        cs.setDescription("Simple Glide Check");
         cs.setExperimental(true);
     }
 
@@ -28,11 +28,11 @@ public class FlightA extends Check {
             return;
         }
 
-        if(e.getServerAirTick() < 12 ){
+        if( e.getServerAirTick() < 6 ){
             return;
         }
 
-        if( e.getTo().getY() >= e.getFrom().getY() ){
+        if( e.getTo().getY() < e.getFrom().getY() && e.getDeltaY() <= e.getLastDeltaY() ){
             UUID uuid = e.getPlayer().getUniqueId();
             if(violations.get(uuid) == null){
                 violations.put(uuid, new Counter());
@@ -40,7 +40,7 @@ public class FlightA extends Check {
             violations.get(uuid).count();
             int count = violations.get(uuid).getCount();
             if( count > 5 ){
-                flag(e.getPlayer(), "vl=" + count + " at=" + e.getServerAirTick());
+                flag(e.getPlayer());
             }
         }
     }
