@@ -8,7 +8,7 @@ This plugin allows you to block cheater, but this still have a lot of issues nee
 
 # I'll explain how checks are work.
 
-## Timer Check
+## Timer[A] Check
 
 This timer check is look to delay between two flying packets.
 
@@ -20,7 +20,7 @@ It is checking delay's legitimately which means, allows detect Slow Timer Hacks.
 
 This is very basic check.
 
-## Invalid Check, this is spoofed ground check.
+## Invalid[A] Check, this is spoofed ground check.
 
 First of all, there are method player.isOnGround() this is called client side ground. 
 
