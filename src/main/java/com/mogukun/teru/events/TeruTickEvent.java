@@ -2,6 +2,7 @@ package com.mogukun.teru.events;
 
 import com.mogukun.teru.Teru;
 import com.mogukun.teru.check.PlayerUtil;
+import com.mogukun.teru.listeners.PacketListener;
 import com.mogukun.teru.managers.TeruData;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,6 +27,8 @@ public class TeruTickEvent extends Event {
 
     public HashMap<PotionEffectType, Integer> amplifiers;
 
+    public long lastVelocityTaken;
+
     public TeruTickEvent(TeruData data){
         this.data = data;
         Material material = data.player.getLocation().getBlock().getType();
@@ -46,6 +49,9 @@ public class TeruTickEvent extends Event {
         this.amplifiers = PlayerUtil.getAmplifier(getPlayer());
 
         this.isMathGround = getTo().getY() % (1/64D) < 1E-4; // Credit: DerRedstoner's CheatGuard
+
+        PacketListener.lastVelocityTaken.putIfAbsent(getPlayer().getUniqueId(), 0L);
+        this.lastVelocityTaken = PacketListener.lastVelocityTaken.get(getPlayer().getUniqueId());
     }
 
     @Deprecated

@@ -20,6 +20,7 @@ public class PacketListener extends PlayerConnection {
     }
 
     public static HashMap<UUID, Long> disableTime = new HashMap<>();
+    public static HashMap<UUID, Long> lastVelocityTaken = new HashMap<>();
     HashMap<UUID, Location> lastLocation = new HashMap<>();
     HashMap<UUID, TeruData> lastTeruData = new HashMap<>();
 

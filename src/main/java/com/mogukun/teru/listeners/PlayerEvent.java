@@ -43,4 +43,9 @@ public class PlayerEvent implements Listener {
         PlayerUtil.disableFor(event.getPlayer());
     }
 
+    @EventHandler
+    public void onVelocity(PlayerVelocityEvent event){
+        PacketListener.lastVelocityTaken.put(event.getPlayer().getUniqueId(), System.currentTimeMillis());
+    }
+
 }

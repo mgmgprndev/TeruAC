@@ -1,6 +1,8 @@
 package com.mogukun.teru.check;
 
 import com.mogukun.teru.Teru;
+import com.mogukun.teru.check.checks.autoclicker.AutoClickerA;
+import com.mogukun.teru.check.checks.autoclicker.AutoClickerB;
 import com.mogukun.teru.check.checks.flight.*;
 
 import com.mogukun.teru.check.checks.invalid.InvalidA;
@@ -42,6 +44,10 @@ public class CheckUtil {
         checks.add( new InvalidA() );
         checks.add( new InvalidB() );
         checks.add( new InvalidC() );
+
+
+        checks.add( new AutoClickerA() );
+        checks.add( new AutoClickerB() );
 
         for(Check c : checks){
             pm.registerEvents(c, instance);
