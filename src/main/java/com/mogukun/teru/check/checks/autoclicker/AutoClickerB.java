@@ -1,6 +1,7 @@
 package com.mogukun.teru.check.checks.autoclicker;
 
 import com.mogukun.teru.check.Check;
+import com.mogukun.teru.check.PlayerUtil;
 import com.mogukun.teru.managers.Counter;
 import com.mogukun.teru.settings.CheckSetting;
 import org.bukkit.entity.Player;
@@ -32,6 +33,9 @@ public class AutoClickerB extends Check {
         UUID uuid = player.getUniqueId();
 
         if( event.getAnimationType() == PlayerAnimationType.ARM_SWING ){
+
+            if(PlayerUtil.isDigging( player ) ) return;
+
             clickCounter.computeIfAbsent(uuid, k -> new Counter());
 
             int speed = clickCounter.get( uuid ).count();

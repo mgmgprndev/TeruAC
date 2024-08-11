@@ -1,6 +1,7 @@
 package com.mogukun.teru.listeners;
 
 import com.mogukun.teru.check.PlayerUtil;
+import com.mogukun.teru.check.checks.autoclicker.AutoClickerA;
 import com.mogukun.teru.commands.TeruCommand;
 import com.mogukun.teru.events.TeruTickEvent;
 import com.mogukun.teru.managers.PacketWrapper;
@@ -23,7 +24,6 @@ public class PacketListener extends PlayerConnection {
     public static HashMap<UUID, Long> lastVelocityTaken = new HashMap<>();
     HashMap<UUID, Location> lastLocation = new HashMap<>();
     HashMap<UUID, TeruData> lastTeruData = new HashMap<>();
-
 
     @Override
     public void a(PacketPlayInFlying packet) {
@@ -115,6 +115,18 @@ public class PacketListener extends PlayerConnection {
         if ( botId == entityId ){
             TeruCommand.attackCount.put(botId,TeruCommand.attackCount.get(botId) + 1);
         }
+
+
+        PlayerUtil.setDigging(player,false);
+    }
+
+    @Override
+    public void a(PacketPlayInBlockDig packet){
+        super.a(packet);
+
+        if( packet.c() == PacketPlayInBlockDig.EnumPlayerDigType.START_DESTROY_BLOCK ) PlayerUtil.setDigging(this.player.getBukkitEntity(),true);
+        if( packet.c() == PacketPlayInBlockDig.EnumPlayerDigType.STOP_DESTROY_BLOCK ) PlayerUtil.setDigging(this.player.getBukkitEntity(),false);
+        if( packet.c() == PacketPlayInBlockDig.EnumPlayerDigType.ABORT_DESTROY_BLOCK ) PlayerUtil.setDigging(this.player.getBukkitEntity(),false);
     }
 
 

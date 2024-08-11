@@ -116,4 +116,20 @@ public class PlayerUtil {
         return amplifiers;
     }
 
+    public static HashMap<UUID, Boolean> isDigging = new HashMap<>();
+
+
+    public static boolean isDigging(Player player) {
+        UUID uuid = player.getUniqueId();
+
+        isDigging.putIfAbsent(uuid, false);
+
+        return isDigging.get(uuid);
+    }
+
+    public static void setDigging(Player player, boolean v) {
+        UUID uuid = player.getUniqueId();
+        isDigging.put(uuid, v);
+    }
+
 }
